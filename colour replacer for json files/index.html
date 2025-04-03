@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lottie Animation</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.6/lottie.min.js"></script>
+</head>
+<body>
+    <div id="lottie" style="width: 100%; height: 100%;"></div>
+    <script>
+        var animationData = null;
+
+        fetch('animation.json')
+            .then(response => response.json())
+            .then(data => {
+                animationData = data;
+                var animation = lottie.loadAnimation({
+                    container: document.getElementById('lottie'),
+                    renderer: 'svg',
+                    loop: true,
+                    autoplay: true,
+                    animationData: animationData
+                });
+            })
+            .catch(error => console.error('Error loading the JSON file:', error));
+    </script>
+</body>
+</html>
